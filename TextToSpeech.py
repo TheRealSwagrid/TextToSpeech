@@ -2,6 +2,7 @@ import signal
 import sys
 import time
 from gtts import gTTS
+from playsound import playsound
 
 from AbstractVirtualCapability import AbstractVirtualCapability, VirtualCapabilityServer, formatPrint
 
@@ -13,9 +14,9 @@ class TextToSpeech(AbstractVirtualCapability):
 
     def read_aloud(self, params: dict):
         text = params["SimpleStringParameter"]
-        tts = gTTS(text)
-        tts.play()
+        tts = gTTS(text, lang="de", slow=True)
         tts.save("tmp.mp3")
+        playsound('tmp.mp3')
         return {}
 
     def loop(self):
