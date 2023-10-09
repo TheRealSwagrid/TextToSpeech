@@ -14,7 +14,8 @@ class TextToSpeech(AbstractVirtualCapability):
 
     def read_aloud(self, params: dict):
         text = params["SimpleStringParameter"]
-        tts = gTTS(text, lang="de", slow=True)
+        lang = params["string"]
+        tts = gTTS(text, lang=lang, slow=True)
         tts.save("tmp.mp3")
         playsound('tmp.mp3')
         return {}
